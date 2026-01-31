@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node task3.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^5.2.1"

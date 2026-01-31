@@ -16,19 +16,24 @@ function lcm(x, y) {
   return (x * y) / gcd(x, y);
 }
 app.get("/app/alimzhan_mamurbekov_mail_ru", (req, res) => {
-  const x = parseInt(req.query.x);
-  const y = parseInt(req.query.y);
-  if (
-    !Number.isInteger(x) ||
-    !Number.isInteger(y) ||
-    x <= 0 ||
-    y <= 0 ||
-    isNaN(x) ||
-    isNaN(y)
-  ) {
+  const xStr = req.query.x;
+  const yStr = req.query.y;
+
+  const isNatural = /^\d+$/;
+
+  if (!isNatural.test(xStr) || !isNatural.test(yStr)) {
     res.send("NaN");
     return;
   }
+
+  const x = parseInt(xStr, 10);
+  const y = parseInt(yStr, 10);
+
+  if (x <= 0 || y <= 0) {
+    res.send("NaN");
+    return;
+  }
+
   const result = lcm(x, y);
   res.send(result.toString());
 });
