@@ -4,7 +4,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 function gcd(a, b) {
-  while (b !== 0) {
+  a = BigInt(a);
+  b = BigInt(b);
+  while (b !== 0n) {
     let temp = b;
     b = a % b;
     a = temp;
@@ -13,8 +15,11 @@ function gcd(a, b) {
 }
 
 function lcm(x, y) {
-  return (x * y) / gcd(x, y);
+  const X = BigInt(x);
+  const Y = BigInt(y);
+  return (X * Y) / gcd(X, Y);
 }
+
 app.get("/app/alimzhan_mamurbekov_mail_ru", (req, res) => {
   const xStr = req.query.x;
   const yStr = req.query.y;
